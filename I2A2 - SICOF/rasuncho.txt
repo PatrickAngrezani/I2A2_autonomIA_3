@@ -1,0 +1,57 @@
+sicof/
+├── api/
+│   ├── __init__.py
+│   ├── main.py         # O servidor da API (FastAPI)
+│   └── schemas.py        # Modelos de dados da API (Pydantic)
+├── config/
+│   ├── __init__.py
+│   └── settings.py       # Carregamento de configurações (ex: API Key)
+├── data/
+│   └── example.xml       # Exemplo de NF-e para a API
+├── ingestion/
+│   ├── __init__.py
+│   └── xml_parser.py     # Funções para extrair dados de XML
+├── llm_agent/
+│   ├── __init__.py
+│   └── grouping_agent.py # Agente de IA para agrupar despesas
+├── models/
+│   ├── __init__.py
+│   ├── classification/
+│   │   ├── __init__.py
+│   │   └── classifier.py # Treinamento e predição (RandomForest)
+│   ├── anomaly_detection/
+│   │   ├── __init__.py
+│   │   └── detector.py     # Treinamento e predição (IsolationForest)
+│   └── saved_models/
+│       ├── .gitkeep        # Local para salvar modelos treinados
+├── preprocessing/
+│   ├── __init__.py
+│   └── pipelines.py      # Pipelines de pré-processamento (Scikit-learn)
+├── validation/
+│   ├── __init__.py
+│   └── metrics.py        # Funções para calcular métricas (Acurácia, F1, etc.)
+├── .env                  # Arquivo para sua API Key (NÃO DEVE SER ENVIADO AO GIT)
+├── main.py               # Script principal para orquestrar treinamento e inferência
+├── README.md             # Documentação do projeto
+└── requirements.txt      # Bibliotecas Python necessárias
+
+
+
+
+# py -3.11 -m venv .venv311
+C:\Users\Patrick\AppData\Local\Programs\Python\Python311\python.exe -m venv .venv311
+# .venv311\Scripts\activate
+
+pip install -r requirements.txt
+
+Execute o main.py pelo menos uma vez para treinar e salvar os modelos (.joblib).
+python main.py
+
+streamlit run app_interface.py
+
+--expor sistema como serviço web
+uvicorn api.main:app --reloadfd
+
+
+
+# organizar e arquivar arquivos conforme compra, venda, serviço etc 

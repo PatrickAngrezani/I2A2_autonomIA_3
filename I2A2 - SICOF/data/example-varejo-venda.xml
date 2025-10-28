@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NFe>
+  <infNFe>
+    <ide>
+      <natOp>Venda de mercadorias ao consumidor</natOp>
+    </ide>
+    <emit>
+      <CNPJ>44555666000188</CNPJ>
+      <xNome>Lojas CenterModas LTDA</xNome>
+      <CNAE>6204000</CNAE>
+    </emit>
+    <dest>
+      <CPF>12345678909</CPF>
+      <xNome>João da Silva</xNome>
+    </dest>
+    <det nItem="1">
+      <prod>
+        <cProd>CAM123</cProd>
+        <xProd>Camisa Polo 100% Algodão</xProd>
+        <NCM>61051000</NCM>
+        <CFOP>5102</CFOP>
+        <qCom>2.00</qCom>
+        <vUnCom>79.90</vUnCom>
+        <vProd>159.80</vProd>
+      </prod>
+    </det>
+    <total>
+      <ICMSTot>
+        <vBC>159.80</vBC>
+        <vICMS>28.76</vICMS>
+        <vNF>159.80</vNF>
+      </ICMSTot>
+    </total>
+  </infNFe>
+</NFe>

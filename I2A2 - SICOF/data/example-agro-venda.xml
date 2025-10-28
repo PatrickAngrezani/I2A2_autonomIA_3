@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NFe>
+  <infNFe>
+    <ide>
+      <natOp>Venda de produtos agrícolas</natOp>
+    </ide>
+    <emit>
+      <CNPJ>12345678000190</CNPJ>
+      <xNome>Fazenda Boa Safra LTDA</xNome>
+      <CNAE>0115600</CNAE>
+    </emit>
+    <dest>
+      <CNPJ>99888777000155</CNPJ>
+      <xNome>Cooperativa Agroindustrial Exemplo</xNome>
+    </dest>
+    <det nItem="1">
+      <prod>
+        <cProd>SOJA001</cProd>
+        <xProd>Sementes de Soja a Granel</xProd>
+        <NCM>12019000</NCM>
+        <CFOP>5101</CFOP>
+        <qCom>2000.00</qCom>
+        <vUnCom>1.80</vUnCom>
+        <vProd>3600.00</vProd>
+      </prod>
+      <imposto>
+        <ICMS>
+          <ICMS00>
+            <orig>0</orig>
+            <CST>00</CST>
+            <vBC>3600.00</vBC>
+            <pICMS>12.00</pICMS>
+            <vICMS>432.00</vICMS>
+          </ICMS00>
+        </ICMS>
+      </imposto>
+    </det>
+    <total>
+      <ICMSTot>
+        <vBC>3600.00</vBC>
+        <vICMS>432.00</vICMS>
+        <vNF>3600.00</vNF>
+      </ICMSTot>
+    </total>
+  </infNFe>
+</NFe>

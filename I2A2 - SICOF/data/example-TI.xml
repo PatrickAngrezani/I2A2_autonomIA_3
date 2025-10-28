@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NFe>
+  <infNFe>
+    <ide>
+      <natOp>Prestação de serviços administrativos</natOp>
+    </ide>
+    <emit>
+      <CNPJ>11223344000155</CNPJ>
+      <xNome>Empresa Emissora LTDA</xNome>
+      <CNAE>6204000</CNAE>
+    </emit>
+    <dest>
+      <CNPJ>99888777000155</CNPJ>
+      <xNome>Prefeitura Municipal de Exemplo</xNome>
+    </dest>
+    <det nItem="1">
+      <prod>
+        <cProd>CONSULT01</cProd>
+        <xProd>SERVIÇOS DE CONSULTORIA EM TI - IMPLEMENTAÇÃO DE SISTEMA</xProd>
+        <NCM>85234990</NCM>
+        <CFOP>5102</CFOP>
+        <qCom>1.00</qCom>
+        <vUnCom>15000.00</vUnCom>
+        <vProd>15000.00</vProd>
+      </prod>
+      <imposto>
+        <ICMS>
+          <ICMS00>
+            <orig>0</orig>
+            <CST>00</CST>
+            <vBC>15000.00</vBC>
+            <pICMS>18.00</pICMS>
+            <vICMS>2700.00</vICMS>
+          </ICMS00>
+        </ICMS>
+      </imposto>
+    </det>
+    <total>
+      <ICMSTot>
+        <vBC>15000.00</vBC>
+        <vICMS>2700.00</vICMS>
+        <vNF>15000.00</vNF>
+      </ICMSTot>
+    </total>
+  </infNFe>
+</NFe>

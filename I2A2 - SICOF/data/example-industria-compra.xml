@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NFe>
+  <infNFe>
+    <ide>
+      <natOp>Compra de matéria-prima para produção</natOp>
+    </ide>
+    <emit>
+      <CNPJ>11222333000100</CNPJ>
+      <xNome>Metalúrgica Alfa Indústria LTDA</xNome>
+      <CNAE>2422901</CNAE>
+    </emit>
+    <dest>
+      <CNPJ>00998877000166</CNPJ>
+      <xNome>Fornecedor de Aço Beta</xNome>
+    </dest>
+    <det nItem="1">
+      <prod>
+        <cProd>FERRO01</cProd>
+        <xProd>Barras de Aço Laminado</xProd>
+        <NCM>72141000</NCM>
+        <CFOP>1101</CFOP>
+        <qCom>1500.00</qCom>
+        <vUnCom>12.50</vUnCom>
+        <vProd>18750.00</vProd>
+      </prod>
+      <imposto>
+        <IPI>
+          <CST>50</CST>
+          <vIPI>1875.00</vIPI>
+        </IPI>
+      </imposto>
+    </det>
+    <total>
+      <ICMSTot>
+        <vBC>18750.00</vBC>
+        <vICMS>2250.00</vICMS>
+        <vNF>18750.00</vNF>
+      </ICMSTot>
+    </total>
+  </infNFe>
+</NFe>
