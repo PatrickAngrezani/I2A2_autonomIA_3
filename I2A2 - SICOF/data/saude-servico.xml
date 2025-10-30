@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NFe>
+  <infNFe>
+    <ide>
+      <natOp>Prestação de Serviço Médico</natOp>
+    </ide>
+    <emit>
+      <!-- Dados do Emitente (Clínica Médica) -->
+      <CNPJ>55667788000199</CNPJ> 
+      <xNome>Clínica Saúde Plena LTDA - ME</xNome>
+      <CNAE>8630503</CNAE> <!-- CNAE para Atividade médica ambulatorial -->
+    </emit>
+    <dest>
+      <!-- Destinatário como Pessoa Física -->
+      <CPF>12345678909</CPF>
+      <xNome>Maria da Silva</xNome>
+    </dest>
+    <det nItem="1">
+      <prod>
+        <cProd>CONSULTA01</cProd>
+        <xProd>Consulta Médica - Especialidade Cardiologia</xProd>
+        <!-- NCM genérico para serviços ou não aplicável -->
+        <NCM>00000000</NCM> 
+        <!-- CFOP de Prestação de Serviço (tributado por ISSQN) -->
+        <CFOP>5933</CFOP> 
+        <qCom>1.00</qCom>
+        <vUnCom>450.00</vUnCom>
+        <vProd>450.00</vProd>
+      </prod>
+       <!-- Detalhamento de impostos focado em ISSQN (Imposto Sobre Serviço) -->
+       <imposto>
+         <ISSQN>
+             <vBC>450.00</vBC>
+             <vAliq>5.00</vAliq> <!-- Alíquota de ISS do município (exemplo) -->
+             <vISSQN>22.50</vISSQN>
+             <cMunFG>3550308</cMunFG> <!-- Código do Município (ex: São Paulo) -->
+             <cListServ>04.01</cListServ> <!-- Código da Lista de Serviço (Medicina) -->
+             <indISS>1</indISS>
+             <indIncentivo>2</indIncentivo>
+         </ISSQN>
+         <!-- PIS e COFINS para serviço (pode variar com regime tributário) -->
+         <PIS>
+            <PISAliq>
+               <CST>01</CST>
+               <vBC>450.00</vBC>
+               <pPIS>0.65</pPIS>
+               <vPIS>2.93</vPIS>
+            </PISAliq>
+         </PIS>
+         <COFINS>
+            <COFINSAliq>
+               <CST>01</CST>
+               <vBC>450.00</vBC>
+               <pCOFINS>3.00</pCOFINS>
+               <vCOFINS>13.50</vCOFINS>
+            </COFINSAliq>
+         </COFINS>
+      </imposto>
+    </det>
+    <total>
+      <ICMSTot>
+        <!-- ICMS geralmente é zero para notas exclusivas de serviço -->
+        <vBC>0.00</vBC>
+        <vICMS>0.00</vICMS>
+        <vNF>450.00</vNF> <!-- Valor total da nota (Valor do Serviço) -->
+      </ICMSTot>
+      <!-- Total específico para Serviços (ISSQN) -->
+      <ISSQNtot>
+         <vServ>450.00</vServ>
+         <vBC>450.00</vBC>
+         <vISS>22.50</vISS>
+         <vPIS>2.93</vPIS>
+         <vCOFINS>13.50</vCOFINS>
+         <dCompet>2025-10-29</dCompet>
+         <cRegTrib>1</cRegTrib> 
+       </ISSQNtot>
+    </total>
+  </infNFe>
+</NFe>

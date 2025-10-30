@@ -110,7 +110,7 @@ def run_full_pipeline():
     grouping = group_expense(descricao_item, ramo_atividade_detectado)
     print(f"centro de Custo: {grouping.centro_custo}")
     print(f"natureza da Despesa: {grouping.natureza_despesa}")
-    print(f"finalidade: {grouping.finalidade}")
+    print(f"finalidade: {grouping.finaliedade}")
 
     # ação customizada
     print("\n[Módulo de Ações Customizadas]")

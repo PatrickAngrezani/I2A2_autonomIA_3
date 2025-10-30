@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+  <infNFe versao="4.00" Id="NFe77665544332211009988776655443322110099887766">
+    <ide>
+      <cUF>43</cUF> <!-- RS -->
+      <cNF>33445566</cNF>
+      <natOp>Compra Material Construcao</natOp>
+      <mod>55</mod>
+      <serie>1</serie>
+      <nNF>6003</nNF>
+      <dhEmi>2025-10-29T08:30:00-03:00</dhEmi>
+       <tpNF>0</tpNF> <!-- Entrada -->
+      <idDest>1</idDest>
+      <cMunFG>4314902</cMunFG>
+      <tpImp>1</tpImp>
+      <tpEmis>1</tpEmis>
+      <cDV>6</cDV>
+      <tpAmb>2</tpAmb>
+      <finNFe>1</finNFe>
+      <indFinal>0</indFinal>
+      <indPres>9</indPres>
+      <procEmi>0</procEmi>
+      <verProc>1.0</verProc>
+    </ide>
+    <emit> <!-- Loja Material Construção -->
+      <CNPJ>66777888000133</CNPJ>
+      <xNome>Casa & Construcao Materiais Ltda</xNome>
+       <enderEmit>
+        <xLgr>Av das Obras</xLgr>
+        <nro>10</nro>
+        <xBairro>Jardim Construir</xBairro>
+        <cMun>4314902</cMun>
+        <xMun>Porto Alegre</xMun>
+        <UF>RS</UF>
+        <CEP>91000000</CEP>
+        <cPais>1058</cPais>
+        <xPais>Brasil</xPais>
+      </enderEmit>
+      <IE>0969876543</IE>
+      <CRT>3</CRT>
+      <CNAE>4744099</CNAE> <!-- Comércio varejista de materiais de construção em geral -->
+    </emit>
+    <dest> <!-- Construtora -->
+      <CNPJ>88999000000177</CNPJ>
+      <xNome>Construtora Edifica Bem Ltda</xNome>
+       <enderDest>
+        <xLgr>Rua do Canteiro</xLgr>
+        <nro>50</nro>
+        <xBairro>Centro</xBairro>
+        <cMun>4314902</cMun>
+        <xMun>Porto Alegre</xMun>
+        <UF>RS</UF>
+        <CEP>90020000</CEP>
+        <cPais>1058</cPais>
+        <xPais>Brasil</xPais>
+      </enderDest>
+      <indIEDest>1</indIEDest>
+      <IE>0961122334</IE>
+    </dest>
+    <det nItem="1">
+      <prod>
+        <cProd>CIM002</cProd>
+        <cEAN/>
+        <xProd>Cimento Portland CP II - Saco 50kg</xProd>
+        <NCM>25232910</NCM>
+        <CFOP>1126</CFOP> <!-- Compra p/ Utilização na Prestação de Serviço (Construção) -->
+        <uCom>SC</uCom>
+        <qCom>200.0000</qCom>
+        <vUnCom>28.00</vUnCom>
+        <vProd>5600.00</vProd>
+        <cEANTrib/>
+        <uTrib>SC</uTrib>
+        <qTrib>200.0000</qTrib>
+        <vUnTrib>28.00</vUnTrib>
+        <indTot>1</indTot>
+      </prod>
+      <imposto>
+        <ICMS>
+          <ICMS00>
+            <orig>0</orig>
+            <CST>00</CST>
+            <modBC>3</modBC>
+            <vBC>5600.00</vBC>
+            <pICMS>17.50</pICMS> <!-- Alíquota RS (Exemplo) -->
+            <vICMS>980.00</vICMS>
+          </ICMS00>
+        </ICMS>
+         <PIS>
+            <PISAliq>
+               <CST>01</CST>
+               <vBC>5600.00</vBC>
+               <pPIS>1.65</pPIS>
+               <vPIS>92.40</vPIS>
+            </PISAliq>
+         </PIS>
+         <COFINS>
+            <COFINSAliq>
+               <CST>01</CST>
+               <vBC>5600.00</vBC>
+               <pCOFINS>7.60</pCOFINS>
+               <vCOFINS>425.60</vCOFINS>
+            </COFINSAliq>
+         </COFINS>
+      </imposto>
+    </det>
+    <total>
+       <ICMSTot>
+        <vBC>5600.00</vBC>
+        <vICMS>980.00</vICMS>
+        <vProd>5600.00</vProd>
+        <vPIS>92.40</vPIS>
+        <vCOFINS>425.60</vCOFINS>
+        <vNF>5600.00</vNF>
+      </ICMSTot>
+    </total>
+    <transp>
+      <modFrete>0</modFrete>
+    </transp>
+    <pag>
+       <detPag>
+          <tPag>15</tPag>
+          <vPag>5600.00</vPag>
+       </detPag>
+    </pag>
+    <infAdic>
+      <infCpl>Compra de material para obra X.</infCpl>
+    </infAdic>
+  </infNFe>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#"> </Signature>
+</NFe>

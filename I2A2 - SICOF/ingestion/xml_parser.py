@@ -1,9 +1,12 @@
+import re
 import pandas as pd
 from lxml import etree
 from io import BytesIO
 
 def parse_nfe_xml(xml_content: str) -> dict:
-    xml_bytes = xml_content.encode('utf-8')
+    # Remove todos os namespaces (xmlns="...") da NF-e
+    xml_sem_ns = re.sub(r'\sxmlns(:\w+)?="[^"]+"', '', xml_content)
+    xml_bytes = xml_sem_ns.encode('utf-8')
     parser = etree.XMLParser(remove_blank_text=True, ns_clean=True, recover=True)
 
     try:
@@ -27,9 +30,9 @@ def parse_nfe_xml(xml_content: str) -> dict:
 
     cnpj_dest = find_text('.//dest/CNPJ')
     cpf_dest = find_text('.//dest/CPF') 
+    valor_ipi_encontrado = find_text('.//det/imposto/IPI/IPITrib/vIPI')
 
     destinatario_id = cnpj_dest if cnpj_dest is not None else cpf_dest
-    print(cnpj_dest, cpf_dest, destinatario_id)
 
     data = {
         'cnpj_emitente': find_text('.//emit/CNPJ'),
@@ -42,26 +45,33 @@ def parse_nfe_xml(xml_content: str) -> dict:
         'valor_icms': find_text('.//total/ICMSTot/vICMS'),
         'valor_ipi': find_text('.//det/imposto/IPI/vIPI')
     }
+    print(f"parsing 11data22 : {data}")
     return data
 
 def xml_to_dataframe(xml_content: str) -> pd.DataFrame:
-    """Converte os dados extraídos do XML para um DataFrame."""
+    """Converte os dados extraídos do XML para um DataFrame, aplicando tipagem correta."""
     data = parse_nfe_xml(xml_content)
-    if not data:
+    print(f"data_xml: {data}")
+    
+    if not data: # Verifica se o parse retornou um dicionário vazio
          print("Parse do XML retornou vazio. Criando DataFrame vazio.")
-         return pd.DataFrame()
+         return pd.DataFrame() # Retorna DataFrame vazio
 
+    # Cria o DataFrame a partir do dicionário (que tem uma única linha)
     df = pd.DataFrame([data])
 
-    string_cols = ['cnpj_emitente', 'cnpj_destinatario', 'cnae_emitente', 'cfop', 'ncm']
+    string_cols = ['cnpj_emitente', 'cnpj_destinatario', 'cnae_emitente', 'cfop', 'ncm', 'descricao_item']
+
     for col in string_cols:
         if col in df.columns:
-            # fillna('') antes de astype(str) para evitar converter None para "None"
             df[col] = df[col].fillna('').astype(str).str.strip()
 
+    # converte colunas que devem ser numéricas
     numeric_cols = ['valor_total_nf', 'valor_icms', 'valor_ipi']
     for col in numeric_cols:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce')
+            
+    df[numeric_cols] = df[numeric_cols].fillna(0)
 
     return df
