@@ -19,3 +19,22 @@ O projeto é dividido nos seguintes módulos:
 ```bash
 python -m venv venv
 source venv/bin/activate  # No Windows: venv\Scripts\activate
+```
+
+### b. Instale as dependências
+ ```bash
+pip install -r requirements.txt
+```
+
+## 2. Execução do Sistema
+
+### Iniciar a interface web via Streamlit:
+```bash
+streamlit run app_interface.py
+```
+
+## 🌐 Aplicação Online  
+
+Acesse a versão hospedada no **Streamlit Cloud**:  
+
+[🔗 **SICOF no Streamlit**](https://i2a2autonomia3-hfg8zvjkfcykuekcvdzmwv.streamlit.app/)
