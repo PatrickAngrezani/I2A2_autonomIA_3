@@ -1,0 +1,29 @@
+# Manipulação de Dados
+pandas
+numpy
+lxml # Para parse de XML
+
+# Machine Learning
+scikit-learn
+xgboost
+
+# API
+fastapi
+uvicorn[standard]
+
+# Interface Gráfica
+streamlit
+
+# LLM / Agente de IA
+langchain
+langchain-openai
+pydantic
+
+# Configuração
+python-dotenv
+pydantic-settings
+
+# (Opcionais para validação)
+matplotlib
+seaborn
+plotly
