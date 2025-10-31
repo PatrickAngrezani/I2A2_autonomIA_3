@@ -846,7 +846,13 @@ def execute_custom_action(ramo: str | None, data: dict) -> dict | None:
     if not ramo or ramo not in RAMO_ACTION_MAP:
         print(f"Nenhuma ação customizada definida para o ramo: {ramo}")
         return None
-
+    
     action_function = RAMO_ACTION_MAP[ramo]
+
+    # action_function = RAMO_ACTION_MAP[ramo]
+    if not callable(action_function):  # 🔒 Garante que é uma função
+        print(f"Ação definida para '{ramo}' não é executável: {action_function}")
+        return None
+    
     print(f"Executando ação customizada para: {ramo}")
     return action_function(data)

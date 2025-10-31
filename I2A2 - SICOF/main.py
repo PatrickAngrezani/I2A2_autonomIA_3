@@ -72,6 +72,7 @@ def run_full_pipeline():
     print("etapa de validação")
     X_test, y_test = create_simulated_dataset(size=50)
 
+    print(f"xtest: {X_test}")
     preds, _ = predict_classification(X_test)
     if preds is not None:
         calculate_classification_metrics(y_test, preds)

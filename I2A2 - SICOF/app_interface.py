@@ -201,7 +201,6 @@ if uploaded_files:
         st.session_state["all_results"] = all_results  # Salva resultados também
 
 # --- Exibição dos Resultados (Usa o estado da sessão) ---
-# Verifica se há resultados guardados na sessão
 if "all_results" in st.session_state and st.session_state["all_results"]:
     all_results = st.session_state["all_results"]  # Carrega os resultados da sessão
     st.divider()
@@ -289,8 +288,6 @@ if "all_results" in st.session_state and st.session_state["all_results"]:
                 with col_fiscal:
                     st.markdown("**Detalhes Fiscais e do Produto/Serviço**")
 
-                    # Usando st.text ou st.caption para códigos e descrições
-                    # Usando .get() com valor padrão 'N/A' para segurança
                     st.text(
                         f"Produto/Serviço: {extracted.get('descricao_item', 'N/A')}"
                     )
@@ -308,8 +305,6 @@ if "all_results" in st.session_state and st.session_state["all_results"]:
                         st.text(
                             f"Destinatário: {extracted.get('cnpj_destinatario', 'N/A')}"
                         )
-                        # Adicione outros campos se o parser os extrair (ex: IE)
-                        # st.text(f"IE Emitente: {extracted.get('ie_emitente', 'N/A')}")
 
                     st.divider()  # Separa códigos dos valores
                     st.markdown("**Valores Monetários:**")
@@ -378,13 +373,11 @@ if "all_results" in st.session_state and st.session_state["all_results"]:
                             "Nenhuma verificação específica executada ou configurada."
                         )
 
-            # Caso a análise tenha falhado (error is not None)
             elif result.get("error"):
                 st.error(
                     f"**Erro ao processar {result.get('file_name', 'N/A')}**: {result['error']}"
                 )
 
-# Limpa o estado se não houver mais arquivos carregados
 elif (
     not uploaded_files
     and "all_results" in st.session_state

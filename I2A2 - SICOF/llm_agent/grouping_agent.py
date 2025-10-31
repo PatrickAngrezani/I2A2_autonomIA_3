@@ -4,13 +4,26 @@ from langchain_core.output_parsers import PydanticOutputParser
 from pydantic import BaseModel, Field
 from config.settings import settings
 
+
 class GroupingOutput(BaseModel):
     """Define a estrutura de saída para o agrupamento da IA."""
-    tipo_documento: str = Field(description="Tipo do documento fiscal: Compra, Venda ou Serviço.")
-    centro_custo: str = Field(description="Centro de custo provável (ex: TI, RH, Infraestrutura, Gabinete).")
-    natureza_despesa: str = Field(description="Natureza da despesa (ex: Material de Consumo, Serviço de Terceiros, Despesa Operacional).")
-    finalidade: str = Field(description="Finalidade institucional resumida da compra/serviço.")
-    observacao: str = Field(description="Comentários ou observações adicionais relevantes à classificação.")
+
+    tipo_documento: str = Field(
+        description="Tipo do documento fiscal: Compra, Venda ou Serviço."
+    )
+    centro_custo: str = Field(
+        description="Centro de custo provável (ex: TI, RH, Infraestrutura, Gabinete)."
+    )
+    natureza_despesa: str = Field(
+        description="Natureza da despesa (ex: Material de Consumo, Serviço de Terceiros, Despesa Operacional)."
+    )
+    finalidade: str = Field(
+        description="Finalidade institucional resumida da compra/serviço."
+    )
+    observacao: str = Field(
+        description="Comentários ou observações adicionais relevantes à classificação."
+    )
+
 
 BASE_PROMPT_TEMPLATE = """
 **Persona:** Você é um agente de IA especialista em auditoria e gestão orçamentária, atuando nos setores público e privado no Brasil. Sua precisão é crucial.
@@ -38,35 +51,36 @@ Descrição: {descricao_item}
 {format_instructions}
 """
 
-# template adicional por ramo de atividade
 RAMO_REGRAS = {
     "Agronegócio": "Considere CFOPs agrícolas, venda de produtos agropecuários e impostos específicos (FUNRURAL, ICMS-ST).",
     "Automotivo": "Priorize validação de peças, serviços automotivos e compatibilidade de códigos.",
     "Indústria": "Considere IPI, Substituição Tributária e itens de produção industrial.",
     "Setor Público": "Considere regras orçamentárias, centros de custo administrativos e finalidades institucionais.",
-    "Comércio": "Classifique produtos de revenda e despesas operacionais típicas do varejo."
+    "Comércio": "Classifique produtos de revenda e despesas operacionais típicas do varejo.",
 }
+
 
 def get_grouping_agent(ramo_atividade: str):
     """Cria o agente de IA com prompt ajustado por ramo de atividade."""
     llm = ChatOpenAI(
-        model="gpt-3.5-turbo",
-        api_key=settings.OPENAI_API_KEY,
-        temperature=0
+        model="gpt-3.5-turbo", api_key=settings.OPENAI_API_KEY, temperature=0
     )
 
     parser = PydanticOutputParser(pydantic_object=GroupingOutput)
 
     ramo_instrucao = RAMO_REGRAS.get(ramo_atividade, "")
-    prompt_text = BASE_PROMPT_TEMPLATE + "\n\nInstruções específicas do ramo:\n" + ramo_instrucao
+    prompt_text = (
+        BASE_PROMPT_TEMPLATE + "\n\nInstruções específicas do ramo:\n" + ramo_instrucao
+    )
 
     prompt = ChatPromptTemplate.from_template(
         prompt_text,
-        partial_variables={"format_instructions": parser.get_format_instructions()}
+        partial_variables={"format_instructions": parser.get_format_instructions()},
     )
 
     chain = prompt | llm | parser
     return chain
+
 
 def group_expense(descricao_item: str, ramo_atividade: str) -> GroupingOutput:
     """Executa o agente de IA para classificar uma despesa."""
@@ -74,11 +88,24 @@ def group_expense(descricao_item: str, ramo_atividade: str) -> GroupingOutput:
 
     try:
         agent = get_grouping_agent(ramo_atividade)
-        result = agent.invoke({
-            "descricao_item": descricao_item,
-            "ramo_atividade": ramo_atividade
-        })
-        return result
+        print(f"-------{agent}")
+        result = agent.invoke(
+            {"descricao_item": descricao_item, "ramo_atividade": ramo_atividade}
+        )
+
+        if isinstance(result, GroupingOutput):
+            return result
+        elif isinstance(result, dict):
+            return GroupingOutput(**result)
+        else:
+            print(f"⚠️ Retorno inesperado do agente: {type(result)} -> {result}")
+            return GroupingOutput(
+                tipo_documento="Indefinido",
+                centro_custo="Indefinido",
+                natureza_despesa="Indefinido",
+                finalidade="Indefinido",
+                observacao=f"Retorno inválido do agente: {result}",
+            )
     except Exception as e:
         print(f"⚠️ Erro ao contatar o agente de IA: {e}")
         return GroupingOutput(
@@ -86,5 +113,5 @@ def group_expense(descricao_item: str, ramo_atividade: str) -> GroupingOutput:
             centro_custo="Erro",
             natureza_despesa="Erro",
             finalidade="Erro",
-            observacao=str(e)
+            observacao=str(e),
         )
